@@ -3,7 +3,7 @@
 #include <fstream>
 using namespace std;
 
-/* ===== ESTRUCTURAS ===== */
+
 
 struct Cobertura {
     string zona;
@@ -13,14 +13,14 @@ struct Cobertura {
 
 struct Cliente {
     string nombre;
-    string cedula;              // <<< NUEVO
+    string cedula;              
     string linea;
     int minutosConsumidos;
     float factura;
     Cobertura cobertura;
 };
 
-/* ===== MODULO COBERTURA ===== */
+
 
 void registrarCobertura(Cobertura coberturas[], int &nc) {
     cin.ignore();
@@ -38,7 +38,7 @@ void registrarCobertura(Cobertura coberturas[], int &nc) {
     cout << "\nCobertura registrada correctamente\n";
 }
 
-/* ===== GUARDAR CLIENTE EN CSV ===== */
+
 
 void guardarClienteCSV(Cliente c) {
     ofstream archivo("CLIENTES.PROGRAMACION.csv", ios::app);
@@ -59,7 +59,7 @@ void guardarClienteCSV(Cliente c) {
     archivo.close();
 }
 
-/* ===== MODULO CLIENTE POSPAGO ===== */
+
 
 void registrarCliente(Cliente clientes[], int &n,
                       Cobertura coberturas[], int nc) {
@@ -71,7 +71,7 @@ void registrarCliente(Cliente clientes[], int &n,
 
     cin.ignore();
 
-    cout << "Cedula del cliente: ";      // <<< NUEVO
+    cout << "Cedula del cliente: ";     
     getline(cin, clientes[n].cedula);
 
     cout << "Nombre del cliente: ";
@@ -80,7 +80,7 @@ void registrarCliente(Cliente clientes[], int &n,
     cout << "Numero de linea: ";
     getline(cin, clientes[n].linea);
 
-    // ASIGNA AUTOMÁTICAMENTE LA ÚLTIMA COBERTURA
+    
     clientes[n].cobertura = coberturas[nc - 1];
 
     cout << "Minutos consumidos: ";
@@ -88,7 +88,7 @@ void registrarCliente(Cliente clientes[], int &n,
 
     clientes[n].factura = 0;
 
-    // GUARDA EN ARCHIVO CSV
+    
     guardarClienteCSV(clientes[n]);
 
     n++;
@@ -96,7 +96,7 @@ void registrarCliente(Cliente clientes[], int &n,
     cout << "\nCliente pospago registrado correctamente\n";
 }
 
-/* ===== MODULO FACTURACION ===== */
+
 
 void facturarCliente(Cliente clientes[], int n) {
     string linea;
@@ -156,7 +156,7 @@ void eliminarClienteCSV() {
     getline(cin, cedulaBuscada);
 
     while (getline(archivo, linea)) {
-        // Si la línea contiene la cédula, NO se copia
+        
         if (linea.find("Cedula;"+cedulaBuscada) != string::npos ||
             linea.find("Cedula:;" + cedulaBuscada) != string::npos) {
             eliminado = true;
@@ -184,7 +184,7 @@ void eliminarClienteCSV() {
 
 
 
-/* ===== MAIN ===== */
+
 
 int main() {
     setlocale(LC_ALL, "Spanish");
